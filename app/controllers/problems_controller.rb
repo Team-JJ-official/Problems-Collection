@@ -7,8 +7,9 @@ class ProblemsController < ApplicationController
   end
 
   def create
-    @problem = Problem.create(problem_params)
-    if @problem.save
+    if @problem = Problem.new(problem_params)
+      update_alternatives
+      @problem.update(answer: @problem.alternatives[params[:problem][:answer].to_i])
       flash[:success] = "{ジャンル：#{@problem.genre}} 問題を作成しました"
       redirect_to root_path
     else
@@ -38,6 +39,13 @@ class ProblemsController < ApplicationController
   private
   def problem_params
     params.require(:problem)[:problem_type] ||= ProblemType.first
-    params.require(:problem).permit(:sentence, :answer, :explanation, :genre, :problem_type_id)
+    params.require(:problem).permit(:sentence, :explanation, :genre, :problem_type_id)
+  end
+
+  def update_alternatives
+    @problem.alternatives.destroy_all
+    params[:alternatives].each do |alt|
+      @problem.alternatives << Alternative.new(sentence: alt)
+    end
   end
 end
