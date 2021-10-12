@@ -2,12 +2,20 @@ class ProblemsController < ApplicationController
   def index
   end
 
+  def show
+    @problem = Problem.find_by(params[:id])
+    if @problem.nil?
+      flash[:danger] = "存在しない問題です"
+      redirect_to root_path
+    end
+  end
+
   def new
     @problem = Problem.new
   end
 
   def create
-    if @problem = Problem.new(problem_params)
+    if @problem = Problem.create(problem_params)
       update_alternatives
       @problem.update(answer: @problem.alternatives[params[:problem][:answer].to_i])
       flash[:success] = "{ジャンル：#{@problem.genre}} 問題を作成しました"
