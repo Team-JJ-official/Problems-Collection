@@ -1,1 +1,12 @@
-<li><%= link_to problem.sentence, problem %></li>
+<div class="card">
+  <%= link_to problem, style: "text-decoration: none;" do %>
+    <div class="card-body">
+      <h5 class="card-title text-dark">
+        <%= problem.sentence %>
+      </h5>
+      <div class="card-subtitle text-muted">
+        <%= problem.genre %>
+      </div>
+    </div>
+  <% end %>
+</div>

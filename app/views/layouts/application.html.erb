@@ -18,7 +18,8 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@6.8.1/swiper-bundle.min.js" integrity="sha256-3pQNh1HD0RMfe1bvW1MzbgJa0Y9A/Ll028NMosH0b/E=" crossorigin="anonymous"></script>
   </head>
 
-  <body>
+  <body class="d-flex flex-column h-100">
+    <%= render "layouts/header" %>
     <div class="container-xxl">
       <% flash.each do |message_type, message| %>
         <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>

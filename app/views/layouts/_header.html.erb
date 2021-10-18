@@ -1,0 +1,17 @@
+<header class="navbar navbar-expand-sm navbar-dark bg-dark mb-3">
+  <div class="container-xxl flex-wrap">
+    <%= link_to "Problems", root_path, class: "btn btn-dark btn-lg mb-1 navbar-brand" %>
+    <a class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#headerNavbarContents" aria-controls="headerNavbarContents" aria-expanded="false" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </a>
+    <div class="collapse navbar-collapse" id="headerNavbarContents" aria-expanded="false">
+      <ul class="navbar-nav">
+        <% path = request.path %>
+        <li class="nav-item"><%= link_to "new problem", new_problem_path, class: "nav-link" %></li>
+      </ul>
+      <hr class="d-md-none text-white-50">
+    </div>
+  </div>
+</header>
