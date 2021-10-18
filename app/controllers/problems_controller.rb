@@ -3,11 +3,7 @@ class ProblemsController < ApplicationController
   end
 
   def show
-    @problem = Problem.find_by(params[:id])
-    if @problem.nil?
-      flash[:danger] = "存在しない問題です"
-      redirect_to root_path
-    end
+    @problem = Problem.where("id >= ?", params[:id]).first || Problem.first
   end
 
   def new

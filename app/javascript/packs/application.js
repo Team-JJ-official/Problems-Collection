@@ -11,3 +11,9 @@ import "channels"
 Rails.start()
 // Turbolinks.start()
 ActiveStorage.start()
+
+$(function() {
+  $('[data-bs-toggle="tooltip"]').tooltip();
+  $('[data-bs-toggle="popover"]').popover();
+  // var swiper = new Swiper('.swiper-container', {});
+});
