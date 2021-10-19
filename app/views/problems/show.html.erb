@@ -6,7 +6,9 @@
 <div class="d-flex flex-column gap-2 rounded-3 border border-warning p-2 mb-3">
   <div class="d-flex align-items-center">
     <div class="fs-5 me-2">問題</div>
-    <%= link_to "編集", edit_problem_path(@problem) %>
+    <%= link_to edit_problem_path(@problem) do %>
+      <i class="bi bi-pencil-square"></i>
+    <% end %>
   </div>
   <div class="mb-3">
     <%= @problem.problem_type.sentence %>

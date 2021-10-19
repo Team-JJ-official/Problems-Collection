@@ -31,8 +31,8 @@
 
     <div class="d-flex align-items-center">
       <%= f.label "選択肢",class: "col-1 text-center" %>
-      <div class="col-11">
-        <% 3.times.each do |i| %>
+      <div id="my-alt-form-area" class="col-11">
+        <% [3, @alternatives.size].max.times.each do |i| %>
           <div class="d-flex align-items-center mb-1">
             <% if i == @answer_id %>
               <%= f.radio_button :answer, i, class: "btn-check", id: "answer-#{i}", checked: true %>
@@ -41,6 +41,7 @@
             <% end %>
             <%= label_tag "answer-#{i}", "正解", class: "btn btn-sm btn-outline-danger rounded-pill text-nowrap" %>
             <%= text_field_tag "alternatives[]", @alternatives[i] ? @alternatives[i].sentence : "", class: "form-control" %>
+            <i class="bi bi-x fs-3 my-remove-alt"></i>
           </div>
         <% end %>
       </div>
@@ -55,4 +56,8 @@
       <%= f.submit "登録", class: "btn btn-primary col-8" %>
     </div>
   </div>
+
 <% end %>
+
+
+<%= javascript_pack_tag "problems/flex_alternatives" %>

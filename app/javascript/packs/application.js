@@ -8,6 +8,8 @@ import Rails from "@rails/ujs"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
+import 'bootstrap-icons/font/bootstrap-icons.css'
+
 Rails.start()
 // Turbolinks.start()
 ActiveStorage.start()
@@ -17,3 +19,4 @@ $(function() {
   $('[data-bs-toggle="popover"]').popover();
   // var swiper = new Swiper('.swiper-container', {});
 });
+
