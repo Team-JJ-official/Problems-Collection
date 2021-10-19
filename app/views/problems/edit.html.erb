@@ -1,1 +1,3 @@
-<%= render "problems/form" %>
+<%= render "problems/form", method: :patch %>
+
+<%= button_to "この問題を削除", problem_path(@problem), method: :delete, class: "btn btn-outline-danger p-1 m-3" %>

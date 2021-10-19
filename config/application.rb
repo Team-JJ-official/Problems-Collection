@@ -18,5 +18,8 @@ module ProblemsCollection
     #
     config.time_zone = "Tokyo"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # フォームにfield_with_errorsクラスを追加させない
+    config.action_view.field_error_proc = Proc.new { |html_tag, instance| html_tag }
   end
 end

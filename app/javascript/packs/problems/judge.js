@@ -11,6 +11,8 @@ incorrect.textContent = "不正解"
 
 window.onload = (e) => {
   showdown.setOption('underline', true);
+  showdown.setOption('simpleLineBreaks', true);
+  
   var converter = new showdown.Converter();
   const question = document.getElementById("question");
   var text = question.textContent;

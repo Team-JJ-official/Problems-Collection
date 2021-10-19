@@ -1,9 +1,19 @@
-<%= form_with model: @problem, method: :post do |f| %>
+<% method ||= :post %>
+<% @answer_id ||= 0 %>
+<% @alternatives ||= [] %>
 
-  <% f.object.errors.full_messages.each do |msg| %>
-    <li><%= msg %></li>
-  <% end %>
+<%= form_with model: @problem, method: method do |f| %>
+
   <div class="d-flex flex-column gap-2">
+
+    <% if !f.object.errors.empty? %>
+      <div class="m-2 p-2 rounded-3 border border-danger">
+        <% f.object.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </div>
+    <% end %>
+
     <div class="d-flex align-items-center">
       <%= f.label "問題タイプ", class: "col-1 text-center" %>
       <%= f.collection_select :problem_type_id, ProblemType.all, :id, :name, {}, class: "form-select" %>
@@ -22,11 +32,15 @@
     <div class="d-flex align-items-center">
       <%= f.label "選択肢",class: "col-1 text-center" %>
       <div class="col-11">
-        <% 4.times.each do |i| %>
+        <% 3.times.each do |i| %>
           <div class="d-flex align-items-center mb-1">
-            <%= f.radio_button :answer, i, class: "btn-check", id: "answer-#{i}" %>
+            <% if i == @answer_id %>
+              <%= f.radio_button :answer, i, class: "btn-check", id: "answer-#{i}", checked: true %>
+            <% else %>
+              <%= f.radio_button :answer, i, class: "btn-check", id: "answer-#{i}" %>
+            <% end %>
             <%= label_tag "answer-#{i}", "正解", class: "btn btn-sm btn-outline-danger rounded-pill text-nowrap" %>
-            <%= text_field_tag "alternatives[]", "", class: "form-control" %>
+            <%= text_field_tag "alternatives[]", @alternatives[i] ? @alternatives[i].sentence : "", class: "form-control" %>
           </div>
         <% end %>
       </div>
