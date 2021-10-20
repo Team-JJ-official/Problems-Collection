@@ -30,5 +30,6 @@ test:
   database: db/test.sqlite3
 
 production:
-  <<: *aws
-  database: problems
+  <<: *default
+  database: db/production.sqlite3
+  # database: problems
