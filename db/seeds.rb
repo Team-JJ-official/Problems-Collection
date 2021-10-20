@@ -5,3 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+ProblemType.create(
+  name: "選択問題",
+  sentence: "以下の問題文への解答として適切なものを選択肢の中から選んでください．"
+)
