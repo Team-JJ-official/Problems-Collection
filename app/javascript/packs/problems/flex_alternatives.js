@@ -3,6 +3,7 @@ const addPlus = document.getElementById("my-add-alt");
 const altFormArea = document.getElementById("my-alt-form-area");
 
 const removeForm = (e) => {
+  console.log(altFormArea.childElementCount);
   if(altFormArea.childElementCount > 1){
     e.target.parentNode.remove();
     let i = 0;
@@ -21,11 +22,13 @@ const addForm = (e) => {
   let form = altFormArea.firstElementChild.cloneNode(true);
   let radioElm = form.getElementsByClassName("btn-check")[0];
   let labelElm = form.getElementsByTagName("label")[0];
+  let xElm = form.getElementsByClassName("my-remove-alt")[0];
   let i = altFormArea.childElementCount;
   radioElm.setAttribute("id", `answer-${i}`);
   radioElm.setAttribute("value", i);
   radioElm.removeAttribute("checked");
   labelElm.setAttribute("for", `answer-${i}`);
+  xElm.addEventListener("click", removeForm);
   altFormArea.appendChild(form);
 };
 

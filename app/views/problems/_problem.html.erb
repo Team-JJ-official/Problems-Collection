@@ -1,9 +1,9 @@
 <div class="card">
   <%= link_to problem, style: "text-decoration: none;" do %>
     <div class="card-body">
-      <h5 class="card-title text-dark my-title">
-        <%= problem.sentence %>
-      </h5>
+      <div class="card-title text-dark my-title text-truncate fs-5">
+        <%= problem.sentence.lines.first.chomp + "..." %>
+      </div>
       <div class="card-subtitle text-muted">
         <%= problem.genre %>
       </div>

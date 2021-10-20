@@ -9,17 +9,20 @@ var incorrect = document.createElement("span");
 incorrect.classList.add("text-danger");
 incorrect.textContent = "不正解"
 
-window.onload = (e) => {
-  showdown.setOption('underline', true);
-  showdown.setOption('simpleLineBreaks', true);
-  
-  var converter = new showdown.Converter();
+window.onload = (e) => {  
+  var converter = new showdown.Converter({
+    underline: true,
+    simpleLineBreaks: true
+  });
+
   const question = document.getElementById("question");
+  const explanation = document.getElementById("explanation");
   var text = question.textContent;
   question.textContent = "";
-  question.insertAdjacentHTML("afterbegin", converter.makeHtml(text));
-  console.log(converter.underline);
-  console.log(converter.makeHtml(text));
+  question.insertAdjacentHTML("afterbegin", converter.makeHtml(text.trim()));
+  text = explanation.textContent;
+  explanation.textContent = "";
+  explanation.insertAdjacentHTML("afterbegin", converter.makeHtml(text.trim()));
 };
 
 for(const alt of alternatives){

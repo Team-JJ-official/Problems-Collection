@@ -21,18 +21,19 @@
 
     <div class="d-flex align-items-center">
       <%= f.label "領域", class: "col-1 text-center"  %>
+      <%# genreもモデル化しないとあかんわ %>
       <%= f.select :genre, ["敬語", "文法", "語彙", "言葉の意味", "表記", "漢字"], {}, class: "form-select" %>
     </div>
 
     <div class="d-flex align-items-center">
       <%= f.label "問題文", class: "col-1 text-center"  %>
-      <%= f.text_area :sentence, class: "form-control" %>
+      <%= f.text_area :sentence, class: "form-control", rows: 5 %>
     </div>
 
     <div class="d-flex align-items-center flex-wrap">
       <%= f.label "選択肢",class: "col-1 text-center" %>
       <div id="my-alt-form-area" class="col-11">
-        <% [3, @alternatives.size].max.times.each do |i| %>
+        <% [1, @alternatives.size].max.times.each do |i| %>
           <div class="d-flex align-items-center mb-1">
             <% if i == @answer_id %>
               <%= f.radio_button :answer, i, class: "btn-check", id: "answer-#{i}", checked: true %>
@@ -52,7 +53,7 @@
 
     <div class="d-flex align-items-center">
       <%= f.label "解説", class: "col-1 text-center" %>
-      <%= f.text_area :explanation, class: "form-control" %>
+      <%= f.text_area :explanation, class: "form-control", rows: 5 %>
     </div>
 
     <div class="col-12 text-center">

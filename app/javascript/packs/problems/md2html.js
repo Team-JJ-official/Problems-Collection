@@ -8,6 +8,6 @@ window.onload = (e) => {
   for (elm of titles) {
     var text = elm.textContent;
     elm.textContent = "";
-    elm.insertAdjacentHTML("afterbegin", converter.makeHtml(text));
+    elm.insertAdjacentHTML("afterbegin", converter.makeHtml(text.trim()));
   }
 };

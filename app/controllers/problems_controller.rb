@@ -1,9 +1,16 @@
 class ProblemsController < ApplicationController
   def index
+    @genre_sorted_problems = []
+    ["敬語", "文法", "語彙", "言葉の意味", "表記", "漢字"].each do |genre|
+      @genre_sorted_problems += [Problem.where("genre = ?", genre).first]
+    end
+    puts @genre_sorted_problems
   end
 
   def show
     @problem = Problem.where("id >= ?", params[:id]).first || Problem.first
+    @next_problem = Problem.where("genre =  ? and id > ?", @problem.genre, @problem.id).first || Problem.first
+    @prev_problem = Problem.where("genre =  ? and id < ?", @problem.genre, @problem.id).last || Problem.last
   end
 
   def new
